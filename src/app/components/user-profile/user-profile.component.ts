@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { AddressService } from './../../services/address.service';
 import { ReviewService } from './../../services/review.service';
 import { Router } from '@angular/router';
@@ -28,9 +29,9 @@ export class UserProfileComponent implements OnInit {
 
   contentSelected: string = "info";
 
-  constructor(public appComponent: AppComponent, private userv: UserService, 
+  constructor(public appComponent: AppComponent, private userv: UserService,
     private pserv: PurchaseService,
-    private reviewService: ReviewService, 
+    private reviewService: ReviewService,
     private addressService: AddressService,
     private router: Router) { }
 
@@ -45,7 +46,7 @@ export class UserProfileComponent implements OnInit {
         this.currAddress = this.addresses[0];
         console.log(this.currAddress);
       }, 100)
-    } 
+    }
 
     this.appComponent.curUser.reviews = this.reviews;
   }
@@ -61,18 +62,19 @@ export class UserProfileComponent implements OnInit {
 
   }
 
+
   updateInfo() {
     this.closePopup();
 
     if (this.addresses.length < 1) {
       this.addressService.addAddress(this.currAddress)
-    } 
+    }
 
     this.appComponent.curUser = this.tempUser;
 
     this.currAddress.users = this.appComponent.curUser;
     this.updateAddress();
-    
+
     setTimeout(() => {
       this.appComponent.curUser.addresses = this.addresses;
       this.userv.updateUser(this.appComponent.curUser).subscribe(
@@ -83,10 +85,10 @@ export class UserProfileComponent implements OnInit {
       )
     }, 200)
 
-    setTimeout(() => {     
+    setTimeout(() => {
       this.getPurchases();
     }, 300)
-    setTimeout(() => {     
+    setTimeout(() => {
       this.getAddresses();
     }, 400)
   }
@@ -101,7 +103,7 @@ export class UserProfileComponent implements OnInit {
 
     this.contentSelected = content;
   }
-  
+
   seeReviews(userId:number) {
     this.reviewService.getUsersReviews(userId).subscribe({
       next: (response) => {

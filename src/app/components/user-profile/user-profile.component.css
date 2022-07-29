@@ -1,7 +1,7 @@
 .content-bg {
-    background-color:rgb(237, 238, 239);
+    background-color:lightgray;
     outline: auto;
-    outline-color: rgb(138, 136, 136);
+    outline-color: rgb(237, 238, 239);
 }
 
 .content {
@@ -10,14 +10,15 @@
 
 .list-group:hover {
     cursor: pointer;
+
 }
 
 .info-field {
-    color: grey
+    color: rgb(0, 0, 0)
 }
 
 .title {
-    background-color:dimgray;
+    background-color:#F26925;
     color: white;
 }
 
@@ -28,4 +29,47 @@
 img {
 
     width: 50%;
+}
+
+.list-group-item{
+
+  background-color: white;
+  border-color: green;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+
+
+
+}
+
+.list-group-item.active{
+
+  background-color: rgb(255, 186, 58);
+  border-color: green;
+
+}
+
+.list-group-item:hover{
+
+  background-color: whitesmoke;
+  border-color: green;
+  border-width: 3px;
+}
+
+.btn-primary{
+  color: black;
+  background-color: rgb(255, 186, 58);
+  border-color: green;
+  border-radius: 10px;
+
+
+
+
+}
+.btn-primary:hover{
+
+  background-color: whitesmoke;
+  border-color: green;
+  border-width: 3px;
 }

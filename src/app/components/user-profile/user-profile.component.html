@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+<br>
 <!-- Intro message for the currently logged in user -->
 <h3>Welcome, {{ appComponent.curUser.firstName }}!</h3>
 
@@ -10,9 +12,11 @@
             </a> -->
         <a (click)="changeContent('info')" name="button" id="info"
           class="list-group-item list-group-item-action active">User Information</a>
-        <a (click)="changeContent('purchases')" name="button" id="purchases"
+        <br>
+          <a (click)="changeContent('purchases')" name="button" id="purchases"
           class="list-group-item list-group-item-action">Purchase History</a>
-        <a (click)="changeContent('reviews')" name="button" id="reviews"
+        <br>
+          <a (click)="changeContent('reviews')" name="button" id="reviews"
           class="list-group-item list-group-item-action">Reviews</a>
       </div>
     </div>
@@ -48,12 +52,12 @@
               <div class="col col-lg-2">
                 <div *ngIf="addresses.length <= 0">No mailing address</div>
 
-                <div *ngFor="let address of addresses"> 
+                <div *ngFor="let address of addresses">
                   {{address.street}} {{address.secondary}} {{ address.city }}, {{ address.state }} {{ address.zip }}
                 </div>
-            
+
               </div>
-              
+
             </div>
 
 
@@ -232,15 +236,15 @@
                     <h3>{{r.title}}</h3>
                    <div>Rated {{r.stars}}/5</div>
                    <div>Review Date: {{r.posted}}</div>
-                   <div>Review Content: 
+                   <div>Review Content:
                     <p>{{r.review}}</p>
                    </div>
                   </div>
-                </li>               
+                </li>
                </ul>
                <p *ngIf="!reviews.length" class="text-center">
                 No reviews by {{appComponent.curUser.firstName}} yet.
-               </p>              
+               </p>
             </div>
           </div>
 
