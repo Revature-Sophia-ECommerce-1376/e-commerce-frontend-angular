@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,11 +19,11 @@ export class UploadService {
    */
   pushFile(file: File): Observable<string> { //: Observable<HttpEvent<{}>>
     const data: FormData = new FormData();
-    const headers: HttpHeaders = new HttpHeaders({ 'Access-Control-Allow-Origin': 'http://localhost:4200' });
+    // const headers: HttpHeaders = environment.headers;
     data.append('file', file);
 
-    return this.http.put('http://localhost:8080/api/product/uploadFile', data, {
-      headers: headers,
+    return this.http.put(environment.baseUrl + '/api/product/uploadFile', data, {
+      headers: environment.headers,
       reportProgress: true,
       responseType: 'text'
     });

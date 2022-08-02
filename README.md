@@ -56,9 +56,7 @@ This repository serves as the frontend of an e-commerce application. Any visitor
 
 #### API Reference
 https://app.swaggerhub.com/apis/ANDYHUGHES39_1/Revazon/1.0.0
-```html
-    
-```
+
 
 
 ---

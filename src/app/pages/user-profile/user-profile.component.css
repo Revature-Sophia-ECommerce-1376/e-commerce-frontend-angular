@@ -27,6 +27,14 @@
   color: grey;
 }
 
+.form-control.invalid {
+  border-color: #dc3545 !important;
+}
+
+.form-select.invalid {
+  border-color: #dc3545 !important;
+}
+
 img {
 
   width: 50%;

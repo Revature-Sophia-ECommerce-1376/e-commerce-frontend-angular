@@ -22,9 +22,36 @@ describe('AuthenticationService', () => {
   });
   
   
-  
+  describe('getToken', () => {
+    it('should retrieve expected token', () => {
+      service["_token"] = "token";
+      let tok = service.token;
+      expect(tok).toEqual("token");
+    })
+  })
+
+    describe('getRole', () => {
+      it('should retrieve expected Role', () => {
+        service["_role"] = "Admin";
+        let rol = service.role;
+        expect(rol).toEqual("Admin");
+      })
+    })
+
+    describe('setToken', () => {
+      service["_token"] = "token";
+      
+    })
+
   
   })
+
+
+  
+  
+  
+  
+
 	
 	
 

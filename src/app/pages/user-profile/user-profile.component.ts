@@ -158,26 +158,6 @@ export class UserProfileComponent implements OnInit {
     this.addresses[0].city = this.updatedAddress.city
 
     if (this.isNewAddress) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 983f2fe3d639d953c0bb9f7891b8fc51875cef13
-      this.addressService.addAddress(this.addresses[0]).subscribe({
-        next: () => {
-          this.userService.findUserById(this.currentUserId).subscribe({
-            next:(user)=>{
-              user.firstName = this.updatedUserPlaceholder.firstName;
-              user.lastName = this.updatedUserPlaceholder.lastName;
-              this.userService.updateUser(user, this.currentUserId).subscribe({
-                next: (updatedUser) => {
-                  this.currentUser.firstName = updatedUser.firstName;
-                  this.currentUser.lastName = updatedUser.lastName;
-                  sessionStorage.setItem("user", JSON.stringify(this.currentUser))
-                }
-              })
-<<<<<<< HEAD
-=======
       this.addressService.addAddress(this.addresses[0], this.currentUserId).subscribe({
         next: (newAddress) => {
           this.isNewAddress = false;
@@ -191,30 +171,14 @@ export class UserProfileComponent implements OnInit {
               this.currentUser.firstName = updatedUser.firstName;
               this.currentUser.lastName = updatedUser.lastName;
               sessionStorage.setItem("user", JSON.stringify(this.currentUser))
->>>>>>> 62a2f74f47f479b5599dcb4890ebf945b9c3e2d0
-=======
-
->>>>>>> 983f2fe3d639d953c0bb9f7891b8fc51875cef13
             }
           })
         }
       });
     } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      this.addressService.updateAddress(this.addresses[0]).subscribe({
-        next:(updatedAddresses) =>{
-=======
       this.addressService.updateAddress(this.addresses[0], this.currentUserId).subscribe({
         next: (updatedAddresses) => {
 
->>>>>>> 62a2f74f47f479b5599dcb4890ebf945b9c3e2d0
-=======
-
-      this.addressService.updateAddress(this.addresses[0]).subscribe({
-        next:(updatedAddresses) =>{
-
->>>>>>> 983f2fe3d639d953c0bb9f7891b8fc51875cef13
           this.currentUser.firstName = this.updatedUserPlaceholder.firstName;
           this.currentUser.lastName = this.updatedUserPlaceholder.lastName;
           this.currentUser.addresses[0] = updatedAddresses;

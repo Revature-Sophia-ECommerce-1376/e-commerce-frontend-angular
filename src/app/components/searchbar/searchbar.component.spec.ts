@@ -60,9 +60,10 @@ describe('SearchbarComponent', () => {
 
     component.onSubmit();
     tick();
-    expect(component.searchTerm).toBeDefined();
+    expect(component.searchTerm).toBeTruthy();;
     expect(component.search.length).toEqual(1);
     expect(component["appComponent"].isSearching).toEqual(true);
+    
   }))
 
 
