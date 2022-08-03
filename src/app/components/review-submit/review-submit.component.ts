@@ -18,7 +18,9 @@ export class ReviewSubmitComponent implements OnInit {
 
   constructor(public reviewService: ReviewService, public auth: AuthService, private router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.isReviewed)
+  }
 
   /**
    * Submits a review with product given.
@@ -30,7 +32,6 @@ export class ReviewSubmitComponent implements OnInit {
         () => {
           this.isReviewed = true;
           this.router.navigate([''])
-
         },
         (error) => console.log(error)
       );

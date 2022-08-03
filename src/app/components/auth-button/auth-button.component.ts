@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
+import {AuthenticationService} from "../../services/authentication.service";
 
 /**
  * Renders login button if User is logged out.
@@ -36,7 +37,8 @@ import { DOCUMENT } from '@angular/common';
 export class AuthButtonComponent {
   constructor(
     @Inject(DOCUMENT) public document: Document,
-    public auth: AuthService
+    public auth: AuthService,
+    private authentication:AuthenticationService
   ) { }
 
   /**
@@ -50,6 +52,7 @@ export class AuthButtonComponent {
    * Logs User out
    */
   logout() {
+    this.authentication.role = "GUEST";
     this.auth.logout({ returnTo: document.location.origin })
   }
 }

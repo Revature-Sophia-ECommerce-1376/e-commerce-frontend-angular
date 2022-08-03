@@ -21,7 +21,14 @@
         <p> {{ productDetail.description }}</p>
       </div>
       <div class="well">
-        <p>Quantity in Stock: {{productDetail.quantity}}</p>
+<!--        <p>Quantity in Stock: {{productDetail.quantity}}</p>-->
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Quantity in Stock</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Sizing example input" [value]="productDetail.quantity"
+                 aria-describedby="inputGroup-sizing-sm" disabled />
+        </div>
         <button class="btn btn-outline-success" (click)="addToCart(productDetail)" *ngIf="auth.isAuthenticated$ | async">
           Add to Cart
         </button>
@@ -41,8 +48,10 @@
     <p *ngIf="reviews.length == 0" class="text-muted text-center">No reviews for this product yet.</p>
   <app-review-submit [productId]="productId" [isReviewed]="userReview !== null"></app-review-submit>
   </div>
+  <div *ngFor="let review of reviews">
+    <app-review [reviewObj]="review"></app-review>
+  </div >
 
-  <app-review *ngFor="let review of reviews" [reviewObj]="review"></app-review>
 </div>
 
 

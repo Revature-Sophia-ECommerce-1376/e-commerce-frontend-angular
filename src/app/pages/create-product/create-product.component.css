@@ -59,6 +59,10 @@ img{
   width: 90%;
 }
 
+.form-control.invalid {
+  border-color: #dc3545 !important;
+}
+
 .modal-title{
   text-align: center;
   text-decoration: underline #F26925;

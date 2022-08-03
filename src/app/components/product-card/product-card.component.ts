@@ -78,7 +78,7 @@ export class ProductCardComponent implements OnInit {
 
     if (toBuy < 1) {
       this.msg =
-        'Can not add a 0 or negitive number of items to order, please enter a higher order amount.';
+        'Can not add a 0 or negative number of items to order, please enter a higher order amount.';
       return;
     }
 
@@ -137,8 +137,8 @@ export class ProductCardComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  /** 
-   * Updates popup with 
+  /**
+   * Updates popup with
    * @param {Product} product
   */
   updatePopUp(product: Product) {
@@ -153,7 +153,7 @@ export class ProductCardComponent implements OnInit {
 
   /**
    * Removes Popup
-   * @param product 
+   * @param product
    */
   deletePopUp(product: Product) {
     this.disProdComp.productToDelete.id = product.id;
@@ -165,7 +165,7 @@ export class ProductCardComponent implements OnInit {
 
   /**
    * Removes Product and reroutes to /
-   * @param product 
+   * @param product
    */
   onDeleteProduct(product: Product) {
     this.productService.deleteProduct(product.id).subscribe(

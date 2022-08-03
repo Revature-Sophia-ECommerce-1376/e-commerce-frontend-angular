@@ -26,6 +26,8 @@ export class ProductDetailsComponent implements OnInit {
   totalPrice: number = 0;
   userReview: any;
   userId: number = Number(sessionStorage.getItem('userId'));
+  msg:string = '';
+
 
   @Input() productInfo!: Product;
 
@@ -53,31 +55,53 @@ export class ProductDetailsComponent implements OnInit {
       .getProductReviews(this.productId)
       .subscribe((response) => {
         this.reviews = response;
-        let userReviewArray = this.reviews.filter((review: any) => {
-          return review.user.id === this.userId;
-        });
         this.userReview =
-          userReviewArray.length > 0 ? userReviewArray[0] : null;
+          this.reviews.length > 0 ? this.reviews[0] : null;
       });
   }
 
   addToCart(product: Product): void {
     let inCart = false;
 
+    // this.products.forEach((element) => {
+    //   if (element.product == product) {
+    //     ++element.quantity;
+    //     let cart = {
+    //       cartCount: this.cartCount + 1,
+    //       products: this.products,
+    //       totalPrice: this.totalPrice + product.price,
+    //     };
+    //     this.productService.setCart(cart);
+    //     inCart = true;
+    //   }
+    // });
+
     this.products.forEach((element) => {
-      if (element.product == product) {
-        ++element.quantity;
-        let cart = {
-          cartCount: this.cartCount + 1,
-          products: this.products,
-          totalPrice: this.totalPrice + product.price,
-        };
-        this.productService.setCart(cart);
-        inCart = true;
+      if (element.product.id == product.id) {
+        if (1 + element.quantity > product.quantity) {
+          this.msg =
+            'Can not order more items then currently in stock, please enter a lower order amount.';
+          inCart = true;
+        }
+        else {
+          ++element.quantity;
+          let cart = {
+            cartCount: this.cartCount + 1,
+            products: this.products,
+            totalPrice: this.totalPrice + (product.price),
+          };
+
+          this.productService.setCart(cart);
+          inCart = true;
+          return;
+        }
       }
     });
 
+
     if (!inCart) {
+      if (product.quantity === 0) return;
+
       let newProduct = {
         product: product,
         quantity: 1,

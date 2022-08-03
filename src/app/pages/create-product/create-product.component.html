@@ -1,82 +1,75 @@
 <app-navbar></app-navbar>
 
 <div class="container mt-4">
-
   <div class="card-body">
     <div class="card shadow-lg">
-
       <h4 class="card-title">SUBMIT A PRODUCT</h4>
       <form id="create-product-form" [formGroup]="createProductForm">
         <div class="form-group">
           <label for="inputProductName">Name of Product</label>
-          <input type="text" class="form-control" formControlName="pname" id="inputProductName"
-            placeholder="Enter Name of Product">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="pname"
+            id="inputProductName"
+            placeholder="Enter Name of Product"
+          />
         </div>
         <div class="form-group">
           <label for="inputQuantity">Quantity</label>
-          <input type="number" class="form-control" formControlName="pquantity" id="inputQuantity"
-            placeholder="Enter Quantity" min="1" max="9999999">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="pquantity"
+            id="inputQuantity"
+            placeholder="Enter Quantity"
+            min="1"
+            max="9999999"
+          />
         </div>
         <div class="form-group">
           <label for="inputDescription">Product Description</label>
-          <input type="text" class="form-control" formControlName="pdescription" id="inputDescription"
-            placeholder="Enter Product Description">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="pdescription"
+            id="inputDescription"
+            placeholder="Enter Product Description"
+          />
         </div>
         <div class="form-group">
           <label for="inputPrice">Price</label>
-          <input type="number" class="form-control" formControlName="pprice" id="inputPrice" placeholder="Price">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="pprice"
+            id="inputPrice"
+            placeholder="Price"
+          />
         </div>
         <div class="form-group">
           <label for="inputImage">Image</label>
-          <input type="text" class="form-control" formControlName="pimage" id="inputImage" placeholder="Image.png">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="pimage"
+            id="inputImage"
+            placeholder="Image.png"
+          />
         </div>
         <div class="warning-messages">
-          <h4>{{this.warningTextMessage}}</h4>
-          <br>
-          <h4>{{this.warningNumberMessage}}</h4>
-          <br>
+          <h4>{{ this.warningTextMessage }}</h4>
+          <br />
+          <h4>{{ this.warningNumberMessage }}</h4>
+          <br />
         </div>
 
         <div class="onsubmitbtn">
-          <button class="btn btn-primary" (click)="onSubmit()">Submit Product</button>
+          <button class="btn btn-primary" (click)="onSubmit()">
+            Submit Product
+          </button>
         </div>
-        <div class="uploadimagebtn">
-          <button class="btn btn-primary" (click)="openPopup()">Upload New Image</button>
-        </div>
-
       </form>
-
     </div>
   </div>
-
-  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{ display: modalVisibility }">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-body">
-            <h5 class="modal-title">Upload an Image</h5>
-            <button (click)="closePopup()" type="button" class="btn-close" aria-label="Close"></button>
-            <div class="field1">
-              <input id="imageInput" type="file" (change)="selectFile($event)">
-            </div>
-            <br>
-            <div class="field1">
-              <input type="text" name="image" [(ngModel)]="fileName" placeholder="New file name">
-            </div>
-            <br> <br>
-            <div class="field1">
-              <input type="text" name="image" [(ngModel)]="file" placeholder="Search existing files">
-              <br><img *ngIf="file != ''" src="https://revazon-image-bucket.s3.amazonaws.com/{{file}}"
-                alt="product image">
-              <br>
-            </div>
-            <div class="onsubmitbtn">
-              <button class="btn btn-primary" (click)="upload()">Upload</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>

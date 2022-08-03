@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from "@auth0/auth0-angular";
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-create-product',
@@ -12,13 +12,6 @@ import { AuthService } from "@auth0/auth0-angular";
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent implements OnInit {
-  selectedFiles!: FileList;
-  currentFile!: File;
-  selectedFile = null;
-  changeImage = false;
-  fileName: string = '';
-  file: string = '';
-  imageSelected = false;
   warningTextMessage: string = '';
   warningNumberMessage: string = '';
   modalVisibility: string = '';
@@ -29,7 +22,7 @@ export class CreateProductComponent implements OnInit {
     private uploadService: UploadService,
     private http: HttpClient,
     private auth: AuthService
-  ) { }
+  ) {}
 
   /**
    * Must be authorized to access this component
@@ -44,7 +37,6 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
-
   createProductForm = new FormGroup({
     pname: new FormControl(''),
     pquantity: new FormControl(''),
@@ -52,54 +44,6 @@ export class CreateProductComponent implements OnInit {
     pprice: new FormControl(''),
     pimage: new FormControl(''),
   });
-
-  change(_event: any) {
-    this.changeImage = true;
-  }
-
-  /**
-   * 
-   * Loads image from public s3 bucket
-   */
-  viewImage() {
-    if (this.file == '') {
-      console.log('File name is empty');
-      return;
-    }
-    console.log('viewing' + this.file);
-    window.open('https://revazon-image-bucket.s3.amazonaws.com/' + this.file);
-  }
-
-  /**
-   * Capture image change
-   * @param event 
-   */
-  changedImage(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
-  /**
-   * Uploads file to S3 
-   *
-   */
-  upload() {
-    if (this.fileName == '') {
-      console.log('fileName cannot be empty');
-      return;
-    }
-    this.currentFile = this.selectedFiles[0];
-    this.uploadService.pushFile(this.currentFile).subscribe((event) => {
-      console.log(event);
-      this.modalVisibility = 'none';
-    });
-  }
-
-  selectFile(event: any) {
-    this.selectedFiles = event.target.files;
-  }
-  updateImage(url: string) {
-    this.file = 'https://revazon-image-bucket.s3.amazonaws.com/' + url;
-  }
 
   /**
    * Submitting the new product and validating input
@@ -128,7 +72,8 @@ export class CreateProductComponent implements OnInit {
           this.prodService
             .createProduct(
               this.createProductForm.get('pname')?.value as string,
-              this.createProductForm.get('pquantity')?.value as unknown as number,
+              this.createProductForm.get('pquantity')
+                ?.value as unknown as number,
               this.createProductForm.get('pdescription')?.value as string,
               this.createProductForm.get('pprice')?.value as unknown as number,
               this.createProductForm.get('pimage')?.value as string

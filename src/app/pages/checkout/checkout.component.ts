@@ -10,14 +10,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./checkout.component.css'],
 })
 /**
- * 
+ *
  */
 export class CheckoutComponent implements OnInit {
   products: {
     product: Product;
     quantity: number;
   }[] = [];
-  totalPrice!: number;
+  totalPrice!: string;
   cartProducts: Product[] = [];
   finalProducts: { id: number; quantity: number }[] = [];
 
@@ -70,7 +70,7 @@ export class CheckoutComponent implements OnInit {
       this.products.forEach((element) =>
         this.cartProducts.push(element.product)
       );
-      this.totalPrice = cart.totalPrice;
+      this.totalPrice = (Math.round((cart.totalPrice * 100))/100).toString();
     });
   }
 

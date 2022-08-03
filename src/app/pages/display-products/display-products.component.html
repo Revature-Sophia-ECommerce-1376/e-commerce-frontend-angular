@@ -59,30 +59,40 @@ so it's gone for now -->
               <div class="form-group">
                 <label for="inputProductName">Change Name</label>
                 <input type="text" class="form-control" formControlName="pname" id="inputProductName"
-                  placeholder="Enter Name of Product" />
+                  placeholder="Enter Name of Product"
+                  [ngClass]="{'invalid': updateProductForm.get('pname')!.invalid &&
+                                         updateProductForm.get('pname')!.touched}">
               </div>
               <div class="form-group">
                 <label for="inputQuantity">Change Quantity</label>
-                <input type="number" class="form-control" formControlName="pquantity" id="inputQuantity"
-                  placeholder="Enter Quantity" min="1" max="9999999" />
+                <input type="text" class="form-control" formControlName="pquantity" id="inputQuantity"
+                  placeholder="Enter Quantity"
+                  [ngClass]="{'invalid': updateProductForm.get('pquantity')!.invalid &&
+                                         updateProductForm.get('pquantity')!.touched}">
               </div>
               <div class="form-group">
                 <label for="inputDescription">Change Product Description</label>
                 <input type="text" class="form-control" formControlName="pdescription" id="inputDescription"
-                  placeholder="Enter Product Description" />
+                  placeholder="Enter Product Description"
+                  [ngClass]="{'invalid': updateProductForm.get('pdescription')!.invalid &&
+                                         updateProductForm.get('pdescription')!.touched}">
               </div>
               <div class="form-group">
                 <label for="inputPrice">Change Price</label>
-                <input type="number" class="form-control" formControlName="pprice" id="inputPrice"
-                  placeholder="Enter Price" />
+                <input type="text" class="form-control" formControlName="pprice" id="inputPrice"
+                  placeholder="Enter Price"
+                  [ngClass]="{'invalid': updateProductForm.get('pprice')!.invalid &&
+                                         updateProductForm.get('pprice')!.touched}">
               </div>
               <div class="form-group">
                 <label for="inputPrice">Change Image</label>
                 <input type="text" class="form-control" formControlName="pimage" id="inputImage"
-                  placeholder="Enter Image.png" />
+                  placeholder="Enter Image.png"
+                  [ngClass]="{'invalid': updateProductForm.get('pimage')!.invalid &&
+                                         updateProductForm.get('pimage')!.touched}">
               </div>
               <div class="text-center mt-4">
-                <button class="btn btn-primary" (click)="onSubmitUpdate(productToUpdate)">
+                <button class="btn btn-primary" [disabled]="updateProductForm.invalid" (click)="onSubmitUpdate(productToUpdate)">
                   Submit Product Update
                 </button>
               </div>

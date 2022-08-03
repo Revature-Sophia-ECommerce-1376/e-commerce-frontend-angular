@@ -82,12 +82,12 @@ export class ProductService {
   }
 
   /**
-   * 
-   * @param {string} name 
-   * @param {number} quantity 
-   * @param {string} description 
-   * @param {number} price 
-   * @param {string} image 
+   *
+   * @param {string} name
+   * @param {number} quantity
+   * @param {string} description
+   * @param {number} price
+   * @param {string} image
    * @returns {Observable<any>}
    */
   public createProduct(
@@ -101,7 +101,7 @@ export class ProductService {
       name: name,
       quantity: quantity,
       description: description,
-      image: 'https://revazon-image-bucket.s3.amazonaws.com/' + image,
+      image: image,
       price: price,
     };
     return this.http.put<any>(
@@ -114,13 +114,13 @@ export class ProductService {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @param {string} name 
-   * @param {number} quantity 
-   * @param {string} description 
-   * @param {number} price 
-   * @param {string} image 
+   *
+   * @param {number} id
+   * @param {string} name
+   * @param {number} quantity
+   * @param {string} description
+   * @param {number} price
+   * @param {string} image
    * @returns {Observable<any>}
    */
   public updateProduct(
@@ -149,8 +149,8 @@ export class ProductService {
   }
 
   /**
-   * 
-   * @param {{number, number}} products 
+   *
+   * @param {{number, number}} products
    * @returns {Observable<any>}
    */
   public purchase(
@@ -175,8 +175,8 @@ export class ProductService {
 */
 
   /**
-   * 
-   * @param {{number, number}} products 
+   *
+   * @param {{number, number}} products
    * @returns {Observable<any>}
    */
   public addPurchase(
@@ -196,9 +196,9 @@ export class ProductService {
   }
 
   /**
-   * 
-   * @param {number} id 
-   * @returns {any} 
+   *
+   * @param {number} id
+   * @returns {any}
    */
   public deleteProduct(id: number) {
     return this.http.delete<any>(

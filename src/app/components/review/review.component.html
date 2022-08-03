@@ -1,18 +1,13 @@
-<div *ngIf="stars && review">
+<div>
   <div class="card bg-white mb-4">
       <div class="card-header">
-          <h4>"{{title}}"</h4>
-          <h6 *ngIf="user.firstName.length > 0" class="text-muted">by {{user.firstName}}</h6>
+          <h4>"{{reviewObj.title}}"</h4>
+          <h6 *ngIf="userJSON.firstName.length > 0" class="text-muted">by {{userJSON.firstName}}</h6>
           <span *ngFor="let _ of [].constructor(stars)" class="fa fa-star checked"></span><span *ngFor="let _ of [].constructor(starsUnchecked)" class="fa fa-star"></span>
           <h6 class="text-muted">Review posted on {{posted}}</h6>
       </div>
       <div class="card-body">
-
-
-          <p>{{review}}</p>
+          <p>{{reviewObj.reviewMessage}}</p>
       </div>
-
   </div>
-
-
 </div>

@@ -17,7 +17,7 @@
         Cart
         <span class="badge badge-info">{{cartCount}}</span>
       </button>
-      <button *ngIf="authentication.role=='ADMIN' && (auth.isAuthenticated$ | async)" class="btn bg-transparent btn-anim" [routerLink]="['/create-product']">
+      <button *ngIf="authentication.role === 'ADMIN' && (auth.isAuthenticated$ | async)" class="btn bg-transparent btn-anim" [routerLink]="['/create-product']">
         Create New Product
       </button>
       <app-auth-button></app-auth-button>

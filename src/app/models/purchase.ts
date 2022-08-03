@@ -6,16 +6,19 @@ export class Purchase {
   orderPlaced: string;
   product: Product;
   ownerUser: User;
+  quantity: number;
 
   constructor(
     id: number,
     orderPlaced: string,
     product: Product,
-    ownerUser: User
+    ownerUser: User,
+    quantity:number
   ) {
     this.id = id;
     this.orderPlaced = orderPlaced;
     this.product = product;
     this.ownerUser = ownerUser;
+    this.quantity = quantity
   }
 }

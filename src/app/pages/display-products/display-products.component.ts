@@ -74,6 +74,7 @@ export class DisplayProductsComponent implements OnInit {
                       [],
                       []
                     );
+                    console.log(data)
                     this.authentication.role = this.setUserRole(data["https://finally.com/roles"][0]);
 
                     this.userService.findUserByEmail(email).subscribe({

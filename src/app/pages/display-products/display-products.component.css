@@ -79,6 +79,10 @@
   font-weight: bold;
 }
 
+.form-control.invalid {
+  border-color: #dc3545 !important;
+}
+
 #delete-options{
   padding: 1%;
   text-align: center;
