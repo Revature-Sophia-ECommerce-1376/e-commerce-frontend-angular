@@ -9,8 +9,7 @@ import { AppComponent } from '../../app.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { switchMap } from "rxjs/operators";
-
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-display-products',
@@ -26,7 +25,6 @@ export class DisplayProductsComponent implements OnInit {
   productToDelete: Product = new Product(0, '', 0, '', 0, '');
   role: string = this.authentication.role;
 
-
   constructor(
     private productService: ProductService,
     public auth: AuthService,
@@ -34,8 +32,7 @@ export class DisplayProductsComponent implements OnInit {
     public authentication: AuthenticationService,
     public appComponent: AppComponent,
     private router: Router
-  ) { }
-
+  ) {}
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe((authenticated) => {
@@ -46,16 +43,13 @@ export class DisplayProductsComponent implements OnInit {
             switchMap((token) => {
               this.authentication.token = token;
               return this.productService.getProducts();
-            }
-            ),
+            })
           )
           .subscribe({
-            next: (products => {
-
+            next: (products) => {
               this.allProducts = products;
               this.auth.idTokenClaims$.subscribe({
                 next: (data) => {
-
                   if (data) {
                     let email: any = data?.email;
                     let password: any = data?.sub;
@@ -74,72 +68,98 @@ export class DisplayProductsComponent implements OnInit {
                       [],
                       []
                     );
-                    console.log(data)
-                    this.authentication.role = this.setUserRole(data["https://finally.com/roles"][0]);
+                    console.log(data);
+                    this.authentication.role = this.setUserRole(
+                      data['https://finally.com/roles'][0]
+                    );
 
                     this.userService.findUserByEmail(email).subscribe({
                       next: (value) => {
                         sessionStorage.setItem('userId', String(value.id));
-                        sessionStorage.setItem('user', JSON.stringify(new User(
-                          value.email,
-                          value.firstName,
-                          value.lastName,
-                          '',
-                          value.role,
-                          [],
-                          [],
-                          []
-                        )));
+                        sessionStorage.setItem(
+                          'user',
+                          JSON.stringify(
+                            new User(
+                              value.email,
+                              value.firstName,
+                              value.lastName,
+                              '',
+                              value.role,
+                              [],
+                              [],
+                              []
+                            )
+                          )
+                        );
                       },
                       error: (err) => {
-                        if (this.authentication.token && potentialNewUser.email === email) {
-                          this.userService.registerUser(potentialNewUser).subscribe({
-                            next: () => {
-                              this.userService.findUserByEmail(email).subscribe({
-                                next: (value1) => {
-                                  sessionStorage.setItem('userId', String(value1.id));
-                                  sessionStorage.setItem('user', JSON.stringify(new User(
-                                    value1.email,
-                                    value1.firstName,
-                                    value1.lastName,
-                                    '',
-                                    value1.role,
-                                    [],
-                                    [],
-                                    []
-                                  )));
-                                }
-                              })
-                            },
-                            error: (bruh) => {
-                              console.log(bruh)
-                            }
-                          });
+                        if (
+                          this.authentication.token &&
+                          potentialNewUser.email === email
+                        ) {
+                          this.userService
+                            .registerUser(potentialNewUser)
+                            .subscribe({
+                              next: () => {
+                                this.userService
+                                  .findUserByEmail(email)
+                                  .subscribe({
+                                    next: (value1) => {
+                                      sessionStorage.setItem(
+                                        'userId',
+                                        String(value1.id)
+                                      );
+                                      sessionStorage.setItem(
+                                        'user',
+                                        JSON.stringify(
+                                          new User(
+                                            value1.email,
+                                            value1.firstName,
+                                            value1.lastName,
+                                            '',
+                                            value1.role,
+                                            [],
+                                            [],
+                                            []
+                                          )
+                                        )
+                                      );
+                                    },
+                                  });
+                              },
+                              error: (bruh) => {
+                                console.log(bruh);
+                              },
+                            });
                         }
-                        console.log(err)
-                      }
-                    })
+                        console.log(err);
+                      },
+                    });
                   }
-                }
-              })
-
-            })
-          })
+                },
+              });
+            },
+          });
       } else {
         this.productService.getProducts().subscribe(
           (resp) => (this.allProducts = resp),
           (err) => console.log(err)
         );
       }
-    })
-
+    });
   }
 
-  updateProductForm = new FormGroup({
+  updateProductForm: FormGroup<{
+    pdescription: FormControl<string | null>;
+    pimage: FormControl<string | null>;
+    pquantity: FormControl<number | null>;
+    pname: FormControl<string | null>;
+    pprice: FormControl<number | null>;
+  }> = new FormGroup({
     pname: new FormControl(''),
-    pquantity: new FormControl(''),
+    pquantity: new FormControl(0),
     pdescription: new FormControl(''),
-    pprice: new FormControl(''),
+    pprice: new FormControl(0),
     pimage: new FormControl(''),
   });
 
@@ -156,10 +176,12 @@ export class DisplayProductsComponent implements OnInit {
       name = this.updateProductForm.get('pname')?.value!;
     }
 
+    // @ts-ignore
     if (this.updateProductForm.get('pquantity')?.value === '') {
       quantity = product.quantity;
     } else {
-      quantity = this.updateProductForm.get('pquantity')?.value as unknown as number;
+      quantity = this.updateProductForm.get('pquantity')
+        ?.value as unknown as number;
     }
 
     if (this.updateProductForm.get('pdescription')?.value === '') {
@@ -168,6 +190,7 @@ export class DisplayProductsComponent implements OnInit {
       description = this.updateProductForm.get('pdescription')?.value!;
     }
 
+    // @ts-ignore
     if (this.updateProductForm.get('pprice')?.value === '') {
       price = product.price;
     } else {
@@ -211,14 +234,7 @@ export class DisplayProductsComponent implements OnInit {
     if (data) {
       return data.toUpperCase();
     } else {
-      return "CUSTOMER";
+      return 'CUSTOMER';
     }
-
   }
 }
-
-
-
-
-
-

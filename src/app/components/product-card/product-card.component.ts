@@ -24,7 +24,6 @@ export class ProductCardComponent implements OnInit {
   currentUserString: any = sessionStorage.getItem('user');
   currentUser: User = JSON.parse(this.currentUserString);
 
-
   wantToDelete: boolean = false;
   wantToUpdate: boolean = false;
   cartCount!: number;
@@ -39,10 +38,7 @@ export class ProductCardComponent implements OnInit {
   totalPrice: number = 0;
   msg: string = '';
 
-  modalVisibility: string = '';
   role: string = this.authentication.role;
-
-
 
   @Input() productInfo!: Product;
   constructor(
@@ -51,11 +47,9 @@ export class ProductCardComponent implements OnInit {
     private router: Router,
 
     public authService: AuthService,
-    public disProdComp: DisplayProductsComponent,
+    public displayProductsComponent: DisplayProductsComponent,
     private authentication: AuthenticationService
-
-
-  ) { }
+  ) {}
   ngOnInit(): void {
     this.subscription = this.productService.getCart().subscribe((cart) => {
       this.cartCount = cart.cartCount;
@@ -88,13 +82,12 @@ export class ProductCardComponent implements OnInit {
           this.msg =
             'Can not order more items then currently in stock, please enter a lower order amount.';
           inCart = true;
-        }
-        else {
+        } else {
           element.quantity += toBuy;
           let cart = {
             cartCount: this.cartCount + toBuy,
             products: this.products,
-            totalPrice: this.totalPrice + (toBuy * this.productInfo.price),
+            totalPrice: this.totalPrice + toBuy * this.productInfo.price,
           };
 
           this.productService.setCart(cart);
@@ -140,18 +133,25 @@ export class ProductCardComponent implements OnInit {
   /**
    * Updates popup with
    * @param {Product} product
-  */
+   */
   updatePopUp(product: Product) {
-    this.disProdComp.productToUpdate.id = product.id;
-    this.disProdComp.productToUpdate.name = product.name;
-    this.disProdComp.productToUpdate.quantity = product.quantity;
-    this.disProdComp.productToUpdate.price = product.price;
-    this.disProdComp.productToUpdate.image = product.image;
-    this.disProdComp.productToUpdate.description = product.description;
-    this.disProdComp.updateModalVisibility = 'block';
-    this.disProdComp.updateProductForm = new FormGroup({
-      pname: new FormControl(product.name, [Validators.required, Validators.pattern('^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$')]),
-      pquantity: new FormControl(product.quantity, [Validators.required, Validators.pattern('^[0-9]{1,6}$')]),
+    this.displayProductsComponent.productToUpdate.id = product.id;
+    this.displayProductsComponent.productToUpdate.name = product.name;
+    this.displayProductsComponent.productToUpdate.quantity = product.quantity;
+    this.displayProductsComponent.productToUpdate.price = product.price;
+    this.displayProductsComponent.productToUpdate.image = product.image;
+    this.displayProductsComponent.productToUpdate.description =
+      product.description;
+    this.displayProductsComponent.updateModalVisibility = 'block';
+    this.displayProductsComponent.updateProductForm = new FormGroup({
+      pname: new FormControl(product.name, [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$'),
+      ]),
+      pquantity: new FormControl(product.quantity, [
+        Validators.required,
+        Validators.pattern('^[0-9]{1,6}$'),
+      ]),
       pdescription: new FormControl(product.description, [Validators.required]),
       pprice: new FormControl(product.price, [Validators.required]),
       pimage: new FormControl(product.image, [Validators.required]),
@@ -163,8 +163,8 @@ export class ProductCardComponent implements OnInit {
    * @param product
    */
   deletePopUp(product: Product) {
-    this.disProdComp.productToDelete.id = product.id;
-    this.disProdComp.deleteModalVisibility = 'block';
+    this.displayProductsComponent.productToDelete.id = product.id;
+    this.displayProductsComponent.deleteModalVisibility = 'block';
   }
   wantsToDelete() {
     this.wantToDelete = !this.wantToDelete;
@@ -182,9 +182,7 @@ export class ProductCardComponent implements OnInit {
 
         this.router.navigate(['/']);
       },
-      (err: any) => console.log(err),
+      (err: any) => console.log(err)
     );
   }
-
 }
-
