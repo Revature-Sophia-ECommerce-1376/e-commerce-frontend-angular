@@ -149,6 +149,7 @@ export class DisplayProductsComponent implements OnInit {
     });
   }
 
+  // @ts-ignore
   updateProductForm: FormGroup<{
     pdescription: FormControl<string | null>;
     pimage: FormControl<string | null>;
@@ -157,9 +158,9 @@ export class DisplayProductsComponent implements OnInit {
     pprice: FormControl<number | null>;
   }> = new FormGroup({
     pname: new FormControl(''),
-    pquantity: new FormControl(0),
+    pquantity: new FormControl(null),
     pdescription: new FormControl(''),
-    pprice: new FormControl(0),
+    pprice: new FormControl(null),
     pimage: new FormControl(''),
   });
 
