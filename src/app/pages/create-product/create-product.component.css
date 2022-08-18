@@ -1,0 +1,74 @@
+#create-product-form
+{
+    padding-top: 3%;
+    padding-left: 1%;
+
+
+}
+
+#upload-image{
+    padding-top: 3%;
+    padding-left: 1%;
+
+
+}
+
+.field1{
+  padding:1%;
+  text-align: center;
+}
+.btn
+{
+    margin-right: 2%;
+}
+
+img{
+    height: 20em;
+    width: 20em;
+}
+
+.homepage-button{
+    text-align: center;
+}
+
+.onsubmitbtn{
+    text-align: center;
+    padding: 1%;
+    
+}
+
+.uploadimagebtn{
+  text-align: center;
+  padding: 1%;
+}
+
+.card-title{
+    text-align: center;
+    text-decoration: underline #F26925;
+    font-weight: bold;
+    padding: 3%;
+}
+
+.card{
+    padding: 1%;
+    background-color: rgb(244, 241, 241);
+
+}
+
+.form-group{
+  width: 90%;
+}
+
+.form-control.invalid {
+  border-color: #dc3545 !important;
+}
+
+.modal-title{
+  text-align: center;
+  text-decoration: underline #F26925;
+  font-weight: bold;
+}
+
+.modal{
+  outline: #F26925;
+}

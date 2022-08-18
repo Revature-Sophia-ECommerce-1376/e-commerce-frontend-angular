@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<!-- if cart is empty, display empty cart, only show button to return to shop -->
+<!-- otherwise, display cart components -->
+<div class="container cart-container">
+  <h2 class="text-center mb-2">Shopping Cart</h2>
+  <div class="empty-cart mt-4 text-center" *ngIf="products.length === 0">
+    <em class="fa fa-shopping-cart text-center align-items-center" style="font-size:50px;"></em>
+    <h5 class="text-center">Your cart is currently empty! </h5>
+    <h6 class="text-center text-muted sm">Before you proceed to checkout you must add some products to your cart. Go
+      find some products!</h6>
+    <button class="btn btn-shop mt-4" [routerLink]="['/']">Return to shop</button>
+  </div>
+  <div *ngIf="products.length != 0">
+
+
+    <table class="table table-striped" id="cart-table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col" class="text-center">Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cart-table-body">
+        <tr *ngFor="let product of products">
+          <!--Maybe like an ng container and an ngIf for a boolean in the ts component-->
+          <ng-container *ngIf="product.quantity > 0">
+            <td>{{ product.product.id }}</td>
+            <td>{{ product.product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>
+              ${{ (product.product.price * product.quantity).toFixed(2) }}
+              <em>(${{ product.product.price.toFixed(2) }} per item)</em>
+            </td>
+            <td>{{ product.product.description }}</td>
+            <!--When this button is clicked change the boolean for that row-->
+            <td><button class="btn btn-danger text-center align-items-center" id="delete-button"
+                (click)="removeFromCart(product)"><em class="fa fa-trash"></em> </button></td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-danger" [routerLink]="['/']">Back</button>
+    <button class="btn btn-warning" (click)="emptyCart()">Empty Cart</button>
+    <button class="btn btn-primary" [routerLink]="['/checkout']">
+      Proceed to Checkout (${{ totalPrice.toFixed(2) }})
+    </button>
+
+  </div>
+</div>

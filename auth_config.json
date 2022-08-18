@@ -1,0 +1,9 @@
+{
+  "domain": "https://dev-famcs6az.us.auth0.com",
+  "clientId": "tWRUqRGcnSxQNxcAqjjIyIOs6A83ltDg",
+  "apiUri": "http://localhost:8080",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error",
+  "audience" : "http://backend-env.eba-g9uchpeu.us-west-2.elasticbeanstalk.com/"
+}
+

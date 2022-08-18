@@ -1,0 +1,98 @@
+/* Item sizing */
+.cardListItem {
+  flex: 0 0 307px;
+  padding-bottom: 6%;
+  max-width: 400px;
+  /* margin-left: 6%; */
+}
+
+.start-cards {
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* small size viewport */
+@media screen and (max-width: 640px) {
+
+  /* Item sizing */
+  .cardListItem {
+    flex: 0 0 307px;
+    margin-left: 4%;
+    padding-left: 3%;
+  }
+}
+
+/* medium size viewport */
+@media screen and (max-width: 959px) {
+
+  /* Item sizing */
+  .cardListItem {
+    /* flex: 0 0 307px; */
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+@supports (display: grid) {
+  .product-cards {
+    max-width: 10000px;
+    margin: 0;
+    padding: 3%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: 60px;
+  }
+}
+
+.container {
+  margin-top: 1%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2%;
+  place-items: center;
+
+}
+
+
+
+.row>div[class*='col-'] {
+  display: flex;
+}
+
+.modal-title{
+  text-align: center;
+  text-decoration: underline #F26925;
+  font-weight: bold;
+}
+
+.form-control.invalid {
+  border-color: #dc3545 !important;
+}
+
+#delete-options{
+  padding: 1%;
+  text-align: center;
+}
+
+#delete-button{
+  padding: 1%;
+  text-align: center;
+}
+
+#cancel-button{
+  text-align: center;
+}

@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <div class="card-body">
+    <div class="card shadow-lg">
+      <h4 class="card-title">SUBMIT A PRODUCT</h4>
+      <form id="create-product-form" [formGroup]="createProductForm">
+        <div class="form-group">
+          <label for="inputProductName">Name of Product</label>
+          <input
+            [ngClass]="{'invalid': createProductForm.get('pname')!.invalid &&
+              createProductForm.get('pname')!.touched}"
+            type="text"
+            class="form-control"
+            formControlName="pname"
+            id="inputProductName"
+            placeholder="Enter Name of Product"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputQuantity">Quantity</label>
+          <input
+            [ngClass]="{'invalid': createProductForm.get('pquantity')!.invalid &&
+              createProductForm.get('pquantity')!.touched}"
+            type="number"
+            class="form-control"
+            formControlName="pquantity"
+            id="inputQuantity"
+            placeholder="Enter Quantity"
+            min="1"
+            max="9999999"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputDescription">Product Description</label>
+          <input
+            [ngClass]="{'invalid': createProductForm.get('pdescription')!.invalid &&
+              createProductForm.get('pdescription')!.touched}"
+            type="text"
+            class="form-control"
+            formControlName="pdescription"
+            id="inputDescription"
+            placeholder="Enter Product Description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputPrice">Price</label>
+          <input
+            [ngClass]="{'invalid': createProductForm.get('pprice')!.invalid &&
+              createProductForm.get('pprice')!.touched}"
+            type="number"
+            class="form-control"
+            formControlName="pprice"
+            id="inputPrice"
+            placeholder="Price"
+            min="1"
+            max="9999999"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputImage">Image</label>
+          <input
+            [ngClass]="{'invalid': createProductForm.get('pimage')!.invalid &&
+              createProductForm.get('pimage')!.touched}"
+            type="text"
+            class="form-control"
+            formControlName="pimage"
+            id="inputImage"
+            placeholder="Image.png"
+          />
+        </div>
+        <div class="warning-messages">
+          <h4>{{ this.warningTextMessage }}</h4>
+          <br />
+          <h4>{{ this.warningNumberMessage }}</h4>
+          <br />
+        </div>
+
+        <div class="onsubmitbtn">
+          <button class="btn btn-primary" (click)="onSubmit()" [disabled]="createProductForm.invalid">
+            Submit Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

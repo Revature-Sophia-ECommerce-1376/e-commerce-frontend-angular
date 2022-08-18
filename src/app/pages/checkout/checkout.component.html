@@ -1,0 +1,269 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5 px-5">
+  <div class="mb-4">
+    <h2>Confirm order and pay</h2>
+    <span
+      >please make the payment, after that you can enjoy all the features and
+      benefits.</span
+    >
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card p-3">
+        <form [formGroup]="checkoutForm">
+          <h6 class="text-uppercase">Payment details</h6>
+
+          <!-- Card Name -->
+          <div class="inputbox mt-3">
+            <input
+              formControlName="cardName"
+              type="text"
+              name="name"
+              class="form-control"
+              [ngClass]="{
+                invalid:
+                  checkoutForm.get('cardName')!.invalid &&
+                  checkoutForm.get('cardName')!.touched
+              }"
+              required="required"
+            />
+            <span
+              [ngClass]="{
+                'text-danger':
+                  checkoutForm.get('cardName')!.invalid &&
+                  checkoutForm.get('cardName')!.touched
+              }"
+              >Name on card</span
+            >
+          </div>
+
+          <div class="row">
+            <!-- Card Number -->
+            <div class="col-md-6">
+              <div class="inputbox mt-3 mr-2">
+                <input
+                  formControlName="cardNumber"
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  [ngClass]="{
+                    invalid:
+                      checkoutForm.get('cardNumber')!.invalid &&
+                      checkoutForm.get('cardNumber')!.touched
+                  }"
+                  required="required"
+                />
+                <em
+                  [ngClass]="{
+                    invalid:
+                      checkoutForm.get('cardNumber')!.invalid &&
+                      checkoutForm.get('cardNumber')!.touched
+                  }"
+                  class="fa fa-credit-card"
+                ></em>
+                <span
+                  [ngClass]="{
+                    'text-danger':
+                      checkoutForm.get('cardNumber')!.invalid &&
+                      checkoutForm.get('cardNumber')!.touched
+                  }"
+                  >Card Number</span
+                >
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="d-flex flex-row">
+                <!-- Expiry -->
+                <div class="inputbox mt-3 mr-2">
+                  <input
+                    formControlName="expiry"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    [ngClass]="{
+                      invalid:
+                        checkoutForm.get('expiry')!.invalid &&
+                        checkoutForm.get('expiry')!.touched
+                    }"
+                    required="required"
+                  />
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        checkoutForm.get('expiry')!.invalid &&
+                        checkoutForm.get('expiry')!.touched
+                    }"
+                    >Expiry</span
+                  >
+                </div>
+
+                <!-- CVV -->
+                <div class="inputbox mt-3 mr-2">
+                  <input
+                    formControlName="cvv"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    [ngClass]="{
+                      invalid:
+                        checkoutForm.get('cvv')!.invalid &&
+                        checkoutForm.get('cvv')!.touched
+                    }"
+                    required="required"
+                  />
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        checkoutForm.get('cvv')!.invalid &&
+                        checkoutForm.get('cvv')!.touched
+                    }"
+                    >CVV</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 mb-4">
+            <h6 class="text-uppercase">Billing Address</h6>
+            <div class="row mt-3">
+              <!-- Street Address-->
+              <div class="col-md-6">
+                <div class="inputbox mt-3 mr-2">
+                  <input
+                    formControlName="streetAddress"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    [ngClass]="{
+                      invalid:
+                        checkoutForm.get('streetAddress')!.invalid &&
+                        checkoutForm.get('streetAddress')!.touched
+                    }"
+                    required="required"
+                  />
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        checkoutForm.get('streetAddress')!.invalid &&
+                        checkoutForm.get('streetAddress')!.touched
+                    }"
+                    >Street Address</span
+                  >
+                </div>
+              </div>
+
+              <!-- City -->
+              <div class="col-md-6">
+                <div class="inputbox mt-3 mr-2">
+                  <input
+                    formControlName="city"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    [ngClass]="{
+                      invalid:
+                        checkoutForm.get('city')!.invalid &&
+                        checkoutForm.get('city')!.touched
+                    }"
+                    required="required"
+                  />
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        checkoutForm.get('city')!.invalid &&
+                        checkoutForm.get('city')!.touched
+                    }"
+                    >City</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <div class="inputbox mt-3 mr-2">
+                  <input
+                    formControlName="state"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    [ngClass]="{
+                      invalid:
+                        checkoutForm.get('state')!.invalid &&
+                        checkoutForm.get('state')!.touched
+                    }"
+                    required="required"
+                  />
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        checkoutForm.get('state')!.invalid &&
+                        checkoutForm.get('state')!.touched
+                    }"
+                    >State/Province</span
+                  >
+                </div>
+              </div>
+
+              <!-- Zip Code-->
+              <div class="col-md-6">
+                <div class="inputbox mt-3 mr-2">
+                  <input
+                    formControlName="zipCode"
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    [ngClass]="{
+                      invalid:
+                        checkoutForm.get('zipCode')!.invalid &&
+                        checkoutForm.get('zipCode')!.touched
+                    }"
+                    required="required"
+                  />
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        checkoutForm.get('zipCode')!.invalid &&
+                        checkoutForm.get('zipCode')!.touched
+                    }"
+                    >Zip Code</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="mt-4 mb-4 d-flex justify-content-between">
+        <button class="btn btn-danger" [routerLink]="['/cart']">
+          Back to Cart
+        </button>
+
+        <button
+          class="btn btn-success px-3"
+          (click)="onSubmit()"
+          [disabled]="checkoutForm.invalid"
+        >
+          Pay ${{ totalPrice }}
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-blue p-3 text-white mb-3">
+        <span>You have to pay</span>
+        <div class="d-flex flex-row align-items-end mb-3">
+          <h1 class="mb-0 yellow">${{ totalPrice }}</h1>
+        </div>
+
+        <div class="hightlight">
+          <span>100% Guaranteed Satisfaction!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

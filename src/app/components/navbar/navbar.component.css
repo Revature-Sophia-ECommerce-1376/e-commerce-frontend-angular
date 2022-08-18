@@ -1,0 +1,26 @@
+.badge-info {
+  background-color: #f26925;
+}
+
+.gradient-custom {
+  background: rgb(242, 105, 37);
+  background: linear-gradient(135deg, rgba(242, 105, 37, 1) 63%, rgba(240, 240, 240, 1) 86%);
+}
+
+.btn-anim{
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.btn-anim:hover {
+  box-shadow: 0 0 40px 40px #f26925 inset;
+}
+
+.btn {
+  border-color: transparent;
+}
+
+.btn-sm {
+  width: 20em;
+
+}

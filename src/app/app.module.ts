@@ -1,37 +1,58 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { AuthButtonComponent } from './components/auth-button/auth-button.component';
+import { RouterModule } from '@angular/router';
+import { environment as env } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import { CartComponent } from './components/cart/cart.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DisplayProductsComponent } from './pages/display-products/display-products.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { ReviewSubmitComponent } from './components/review-submit/review-submit.component';
+import { ReviewComponent } from './components/review/review.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { CreateProductComponent } from './pages/create-product/create-product.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptorProvider } from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    AuthButtonComponent,
     NavbarComponent,
+    DisplayProductsComponent,
     ProductCardComponent,
     CartComponent,
     CheckoutComponent,
-    DisplayProductsComponent
+    ProductDetailsComponent,
+    ReviewSubmitComponent,
+    ReviewComponent,
+    UserProfileComponent,
+    CreateProductComponent,
+    SearchbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      ...env.auth,
+      httpInterceptor: {
+        ...env.httpInterceptor,
+      },
+    }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [RouterModule],
+  providers: [AuthInterceptorProvider],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

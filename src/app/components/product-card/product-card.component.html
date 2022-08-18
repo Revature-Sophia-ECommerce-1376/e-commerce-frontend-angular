@@ -1,22 +1,58 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" [src]="productInfo.image" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{productInfo.name}}</h5>
-      <p class="card-text">{{productInfo.description}}</p>
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" style="cursor: pointer;" [src]="productInfo.image" (click)="selectProduct()"
+    alt="Card image cap" />
+  <div class="card-body" style="cursor: pointer;" (click)="selectProduct()">
+    <h5 class="card-title">{{ productInfo.name }}</h5>
+    <div class="well">
+      <p class="card-text ">{{ productInfo.description }}</p>
+      <h5 class="card-text">${{ productInfo.price.toFixed(2) }}</h5>
     </div>
+
+    <p class="card-text text-danger">{{ msg }}</p>
+  </div>
+
+  <div class="container">
+
     <div class="input-group input-group-sm mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
+        <span class="input-group-text" id="inputGroup-sizing-sm">Quantity in Stock</span>
       </div>
-      <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.price" aria-describedby="inputGroup-sizing-sm" disabled>
+      <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity"
+        aria-describedby="inputGroup-sizing-sm" disabled />
     </div>
-    <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">Quantity in Stock</span>
-        </div>
-        <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity" aria-describedby="inputGroup-sizing-sm" disabled>
+    <div class="input-group input-group-sm mb-3" *ngIf="authService.isAuthenticated$ | async">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Quantity Ordered</span>
       </div>
-    <div class="card-body">
-        <button class="btn btn-outline-success" (click)="addToCart(productInfo)">Add to Cart</button>
+      <input id="qty{{ productInfo.id }}" type="number" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm" min="1" [value]="1" />
     </div>
   </div>
+
+
+  <div *ngIf="role == 'ADMIN'" class="wrapper text-center">
+    <div class="card-body btn-group text-center">
+
+      <button class="btn btn-outline-primary btn-sm" (click)="updatePopUp(productInfo)">
+        Update Item Info
+      </button>
+      <button class="btn btn-outline-danger btn-sm" (click)="deletePopUp(productInfo)">
+        Delete Product
+      </button>
+
+
+    </div>
+
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div *ngIf="authService.isAuthenticated$ | async">
+        <button class="btn btn-outline-success btn-block text-center" (click)="addToCart(productInfo)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</div>

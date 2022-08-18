@@ -1,0 +1,25 @@
+.btn {
+  margin-left: 2%;
+}
+.btn-shop{
+  background-color:  #F26925;
+  color:whitesmoke;
+}
+
+#delete-button {
+  background-color: #dc3545;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#delete-button:hover {
+  background-color: #bb2d3b;
+}
+
+.cart-container {
+  margin-top: 6%;
+}

@@ -1,0 +1,152 @@
+<app-navbar></app-navbar>
+
+<div class="row justify-content-center mt-2 text-center" *ngIf="appComponent.isSearching">
+  <h3 *ngIf="appComponent.searchProducts.length > 0">
+    Search results for "{{ appComponent.search }}"
+  </h3>
+  <!-- commenting this out for the pr:
+this seems to cause issues on the homepage, where it will show this regardless
+so it's gone for now -->
+  <div class="text-center mt-2" *ngIf="appComponent.found === false">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <h4 *ngIf="appComponent.searchProducts.length === 0 && appComponent.found" class="text-muted">
+    Sorry, no results for "{{ appComponent.search }}". Please try another query
+  </h4>
+
+</div>
+
+
+
+
+
+<div class="row justify-content-center mt-2 text-center" style="margin:0%;" *ngIf="!appComponent.isSearching">
+  <h3>Featured Products</h3>
+</div>
+
+<div class="container">
+
+  <div *ngIf="!appComponent.isSearching" class="grid">
+    <div *ngFor="let product of allProducts">
+      <app-product-card class="cardListItem start-cards" [productInfo]="product"></app-product-card>
+    </div>
+  </div>
+
+  <div *ngIf="appComponent.isSearching" class="grid">
+    <div *ngFor="let product of appComponent.searchProducts">
+      <app-product-card class="cardListItem" [productInfo]="product"></app-product-card>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div>
+
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{ display: updateModalVisibility }">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-body">
+
+            <h5 class="modal-title">Update Item</h5>
+
+            <form id="update-product-form" [formGroup]="updateProductForm">
+              <div class="form-group">
+                <label for="inputProductName">Change Name</label>
+                <input type="text" class="form-control" formControlName="pname" id="inputProductName"
+                  placeholder="Enter Name of Product"
+                  [ngClass]="{'invalid': updateProductForm.get('pname')!.invalid &&
+                                         updateProductForm.get('pname')!.touched}">
+              </div>
+              <div class="form-group">
+                <label for="inputQuantity">Change Quantity</label>
+                <input type="text" class="form-control" formControlName="pquantity" id="inputQuantity"
+                  placeholder="Enter Quantity"
+                  [ngClass]="{'invalid': updateProductForm.get('pquantity')!.invalid &&
+                                         updateProductForm.get('pquantity')!.touched}">
+              </div>
+              <div class="form-group">
+                <label for="inputDescription">Change Product Description</label>
+                <input type="text" class="form-control" formControlName="pdescription" id="inputDescription"
+                  placeholder="Enter Product Description"
+                  [ngClass]="{'invalid': updateProductForm.get('pdescription')!.invalid &&
+                                         updateProductForm.get('pdescription')!.touched}">
+              </div>
+              <div class="form-group">
+                <label for="inputPrice">Change Price</label>
+                <input type="text" class="form-control" formControlName="pprice" id="inputPrice"
+                  placeholder="Enter Price"
+                  [ngClass]="{'invalid': updateProductForm.get('pprice')!.invalid &&
+                                         updateProductForm.get('pprice')!.touched}">
+              </div>
+              <div class="form-group">
+                <label for="inputPrice">Change Image</label>
+                <input type="text" class="form-control" formControlName="pimage" id="inputImage"
+                  placeholder="Enter Image.png"
+                  [ngClass]="{'invalid': updateProductForm.get('pimage')!.invalid &&
+                                         updateProductForm.get('pimage')!.touched}">
+              </div>
+              <div class="text-center mt-4">
+                <button class="btn btn-primary" [disabled]="updateProductForm.invalid" (click)="onSubmitUpdate(productToUpdate)">
+                  Submit Product Update
+                </button>
+              </div>
+
+            </form>
+
+            <div class="text-center mt-2">
+              <button class="btn btn-secondary" (click)="closePopup()">
+                CANCEL
+              </button>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div>
+
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{ display: deleteModalVisibility }">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-body">
+
+            <h5 class="modal-title">Delete Product</h5>
+
+            <h4 id="delete-options">Are you sure you want to delete this product?</h4>
+
+            <div id="delete-button">
+              <button class="btn btn-danger mt-4" (click)="onDeleteProduct(productToDelete)">
+                YES DELETE
+              </button>
+            </div>
+
+            <div id="cancel-button">
+              <br />
+              <button class="btn btn-secondary" (click)="closePopup()">
+                CANCEL
+              </button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

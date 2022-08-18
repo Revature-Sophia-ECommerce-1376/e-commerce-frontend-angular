@@ -1,13 +1,28 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar gradient-custom shadow">
+  <button class="btn btn-sm bg-transparent" (click)="notSearching()" [routerLink]="['/']">
     <h4>
-        <img src="../../../assets/images/favicon.png" width="8%" height="8%" alt="Revature">
-        Revature Swag Shop
+      <img src="../../../assets/images/favicon.png" width="13%" height="13%" alt="Revature">
+      Revazon
     </h4>
-    <form class="form-inline">
-        <button class="btn btn-light" [routerLink]="['/cart']">
-            Cart
-            <span class="badge badge-info">{{cartCount}}</span>
-        </button>
-        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout();">Logout</button>
-    </form>
+
+  </button>
+  <app-searchbar></app-searchbar>
+  <!--insert searchbar here-->
+  <!--profile page also here? -->
+  <form class="form-inline">
+    <button class="btn bg-transparent btn-anim" [routerLink]="['/profile']" *ngIf="auth.isAuthenticated$ | async" >Profile</button>
+    <div class="form-group">
+      <button class="btn bg-transparent btn-anim" [routerLink]="['/cart']"      *ngIf="auth.isAuthenticated$ | async"
+      >
+        Cart
+        <span class="badge badge-info">{{cartCount}}</span>
+      </button>
+      <button *ngIf="authentication.role === 'ADMIN' && (auth.isAuthenticated$ | async)" class="btn bg-transparent btn-anim" [routerLink]="['/create-product']">
+        Create New Product
+      </button>
+      <app-auth-button></app-auth-button>
+
+    </div>
+
+  </form>
 </nav>
